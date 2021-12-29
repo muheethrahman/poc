@@ -20,10 +20,10 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="/login.do")
-	public String onLogin(@RequestParam String email,@RequestParam String password,Model model) {
+	public String onLogin(@RequestParam String username,@RequestParam String password,Model model) {
 		
 		System.out.println("invoking login method");
-		boolean loginSuccessful=this.pocService.loginService(email, password, model);
+		boolean loginSuccessful=this.pocService.loginService(username, password, model);
 		if (loginSuccessful) {
 			model.addAttribute("msg", "your account login succesfullly done");
 			return "success";

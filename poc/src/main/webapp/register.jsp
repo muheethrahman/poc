@@ -88,13 +88,13 @@ fountion validate(){
     	<div class="input-group-prepend">
 		    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
 		</div>
-        <input class="form-control" placeholder="Create password" type="password">
+        <input class="form-control" placeholder="Create password" type="password"name="password">
     </div> <!-- form-group// -->
     <div class="form-group input-group">
     	<div class="input-group-prepend">
 		    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
 		</div>
-        <input class="form-control" placeholder="Repeat password" type="password">
+        <input class="form-control" placeholder="Repeat password" type="password"name="confirm">
     </div> <!-- form-group// -->                                      
     <div class="form-group">
        <input type="submit"  value="submit" class="btn float-right login_btn btn btn-secondary">

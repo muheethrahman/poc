@@ -58,7 +58,7 @@ public class POCDaoImpl implements POCDao{
 
 
 	@Override
-	public POCEntity getEmailByEntity(String email, String password) {
+	public POCEntity getEmailByEntity(String username, String password) {
 		
 		System.out.println("getEmail id dao method");
 		POCEntity entity=null;
@@ -66,7 +66,7 @@ public class POCDaoImpl implements POCDao{
 		try {
 			session=this.factory.openSession();
 			org.hibernate.query.Query query=((QueryProducer)session).createNamedQuery("GetRecord");
-			query.setParameter("em",email);
+			query.setParameter("em",username);
 			query.setParameter("e",password);
 			entity=(POCEntity) query.uniqueResult();
 			return entity;

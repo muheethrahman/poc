@@ -45,13 +45,24 @@ public class POCServiceImpl implements POCService {
 
 
 	@Override
-	public boolean loginService(String email, String Password, Model model) {
+	public boolean loginService(String username, String password, Model model) {
 		
 		System.out.println("Invoked loging service");
-		POCEntity entity=this.dao.getEmailByEntity(email, Password);
+		POCEntity entity=this.dao.getEmailByEntity(username, password);
 		if(entity != null && !entity.getUsername().isEmpty() && entity.getUsername() != null
 				&& !entity.getPassword().isEmpty()) {
 		
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+
+
+	@Override
+	public boolean loginEmailAndPasswordValidate(String username, String password) {
+		if (!username.isEmpty() && username != null && password != null && !password.isEmpty()) {
 			return true;
 		} else {
 			return false;
