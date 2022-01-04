@@ -16,7 +16,7 @@ import org.hibernate.annotations.NamedQuery;
 @Entity
 @Table(name="details")
 @NamedQueries({
-	@NamedQuery(name = "GetRecord", query = "select name from POCEntity name where name.email=:em and name.password=:e ")})
+	@NamedQuery(name = "GetRecord", query = "select name from POCEntity name where name.username=:em and name.password=:e ")})
 public class POCEntity implements Serializable {
 
 	@Id
@@ -83,7 +83,7 @@ public class POCEntity implements Serializable {
 	}
 
 	public void setConfirm(String confirm) {
-		confirm = confirm;
+		this.confirm = confirm;
 	}
 
 	public String getCountry() {
