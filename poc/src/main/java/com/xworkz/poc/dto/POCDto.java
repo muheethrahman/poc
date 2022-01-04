@@ -19,7 +19,7 @@ public class POCDto {
 		super();
 		this.username = username;
 		this.password = password;
-		confirm = confirm;
+		this.confirm = confirm;
 		this.country = country;
 		this.state = state;
 		this.city = city;
@@ -53,7 +53,7 @@ public class POCDto {
 	}
 
 	public void setconfirm(String confirm) {
-		confirm = confirm;
+		this.confirm = confirm;
 	}
 
 	public String getCountry() {

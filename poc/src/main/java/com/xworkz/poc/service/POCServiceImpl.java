@@ -1,5 +1,7 @@
 package com.xworkz.poc.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,29 +16,31 @@ import com.xworkz.poc.entity.POCEntity;
 @Service
 public class POCServiceImpl implements POCService {
 	
+	private  Logger logger = 
+			LoggerFactory.getLogger(POCServiceImpl.class);
 	@Autowired
 	private POCDao dao;
 	
 	
 
 	public POCServiceImpl() {
-		System.out.println(getClass().getSimpleName()+"object is created serviceimp");
+		logger.debug(getClass().getSimpleName()+"register Object controller created");
 	}
 
 
 
 	public boolean registers(POCDto pocDto) throws NestedRuntimeException{
 
-		System.out.println("register invoked");
+		logger.debug("register invoked");
 		POCEntity entity=new POCEntity();
 		BeanUtils.copyProperties(pocDto, entity);
 		boolean result=this.dao.savePOC(entity);
 		if(result) {
-			System.out.println("done");
+			logger.debug("done");
 			return true;
 		}
 		else {
-			System.out.println("OOps something went wrongs");
+			logger.debug("OOps something went wrongs");
 		}
 		
 		return false;
@@ -45,13 +49,24 @@ public class POCServiceImpl implements POCService {
 
 
 	@Override
-	public boolean loginService(String email, String Password, Model model) {
+	public boolean loginService(String username, String password, Model model) {
 		
 		System.out.println("Invoked loging service");
-		POCEntity entity=this.dao.getEmailByEntity(email, Password);
+		POCEntity entity=this.dao.getEmailByEntity(username, password);
 		if(entity != null && !entity.getUsername().isEmpty() && entity.getUsername() != null
 				&& !entity.getPassword().isEmpty()) {
 		
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+
+
+	@Override
+	public boolean loginEmailAndPasswordValidate(String username, String password) {
+		if (!username.isEmpty() && username != null && password != null && !password.isEmpty()) {
 			return true;
 		} else {
 			return false;
