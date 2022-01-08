@@ -1,11 +1,11 @@
 package com.xworkz.poc.dao;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.spi.LoggerFactory;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.QueryProducer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,8 +15,7 @@ import com.xworkz.poc.entity.POCEntity;
 
 @Component
 public class POCDaoImpl implements POCDao{
-	private  Logger logger = 
-			LoggerFactory.getLogger(POCDaoImpl.class);
+	//private static final Logger logger=Logger.getLogger(POCDaoImpl.class);
 
 	@Autowired
 	private SessionFactory factory;
@@ -25,34 +24,42 @@ public class POCDaoImpl implements POCDao{
 	
 	
 	public POCDaoImpl() {
-		logger.debug(getClass().getSimpleName()+"register Object controller created");
+		System.out.println(getClass().getSimpleName()+"register Object controller created");
+		//logger.debug(getClass().getSimpleName()+"register Object controller created");
 	}
 
 
 
 
 	public boolean savePOC(POCEntity pocEntity) {
-
-		logger.debug("Save is Started");
+System.out.println("save is stared");
+		//logger.info("Save is Started");
 		Session session=this.factory.openSession();
 		try {
+		
 			Transaction transaction = session.beginTransaction();
+			System.out.println("session is transaction");
 			session.save(pocEntity);
+			System.out.println("saved in entity");
 			transaction.commit();
-			logger.debug("data is saved ");
+			System.out.println("data is saved");
+			//logger.debug("data is saved ");
 			return true;
 		}catch (Exception e) {
 
 		
 			session.getTransaction().rollback();
-			logger.debug("data is rolled back");
+			//logger.info("data is rolled back");
+			System.out.println("roooled back");
 		}finally {
 			if(session !=null) {
-				logger.debug("session is closed");
+				System.out.println("session closed");
+				//logger.info("session is closed");
 				session.close();
 			}
 			else {
-				logger.debug("session is not closed");
+				//logger.info("session is not closed");
+				System.out.println();
 			}
 		}
 		
@@ -65,7 +72,6 @@ public class POCDaoImpl implements POCDao{
 	@Override
 	public POCEntity getEmailByEntity(String username, String password) {
 		
-		System.out.println("getEmail id dao method");
 		POCEntity entity=null;
 		Object session=null;
 		try {
@@ -77,13 +83,13 @@ public class POCDaoImpl implements POCDao{
 			return entity;
 		}catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("You have an exception " + e.getMessage());
+			//logger.info("You have an exception " + e.getMessage());
 			return null;
 		} finally {
 			if (session != null) {
-				System.out.println("Session is closed");
+			//	logger.info("Session is closed");
 			} else {
-				System.out.println("Session is not closed");
+				//logger.info("Session is not closed");
 			}
 		
 	}

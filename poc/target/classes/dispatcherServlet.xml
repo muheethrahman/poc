@@ -22,7 +22,7 @@
  	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
 		id="internalResourceViewResolver">
-		<constructor-arg name="prefix" value="/WEB-INF/" />
+		<constructor-arg name="prefix" value="/" />
 		<constructor-arg name="suffix" value=".jsp" />
 	</bean> 
 	

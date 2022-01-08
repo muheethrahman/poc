@@ -1,9 +1,7 @@
 package com.xworkz.poc.service;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.NestedRuntimeException;
 import org.springframework.stereotype.Service;
@@ -12,35 +10,45 @@ import org.springframework.ui.Model;
 import com.xworkz.poc.dao.POCDao;
 import com.xworkz.poc.dto.POCDto;
 import com.xworkz.poc.entity.POCEntity;
+import com.xworkz.poc.util.PasswordEncoderDecoderUtil;
 
 @Service
 public class POCServiceImpl implements POCService {
 	
-	private  Logger logger = 
-			LoggerFactory.getLogger(POCServiceImpl.class);
+	//private static final Logger logger=Logger.getLogger(POCServiceImpl.class);
 	@Autowired
 	private POCDao dao;
 	
 	
 
 	public POCServiceImpl() {
-		logger.debug(getClass().getSimpleName()+"register Object controller created");
+		//logger.debug(getClass().getSimpleName()+"register Object controller created");
+		System.out.println(getClass().getSimpleName()+"register Object controller created");
 	}
 
 
 
-	public boolean registers(POCDto pocDto) throws NestedRuntimeException{
-
-		logger.debug("register invoked");
+	public boolean registers(POCDto pocDto) throws NestedRuntimeException {
+System.out.println("register invoked");
+		//logger.info("register invoked");
 		POCEntity entity=new POCEntity();
+		String userpassword=pocDto.getPassword();
+		
+		String encrypt= PasswordEncoderDecoderUtil.encodePassword(userpassword);
+		
 		BeanUtils.copyProperties(pocDto, entity);
+		entity.setPassword(encrypt);
+System.out.println(entity.getPassword());
 		boolean result=this.dao.savePOC(entity);
 		if(result) {
-			logger.debug("done");
+		//logger.info("done");
+			System.out.println("done");
+		
 			return true;
 		}
 		else {
-			logger.debug("OOps something went wrongs");
+		//	logger.info("OOps something went wrongs");
+			System.out.println("oops");
 		}
 		
 		return false;
@@ -50,8 +58,8 @@ public class POCServiceImpl implements POCService {
 
 	@Override
 	public boolean loginService(String username, String password, Model model) {
-		
-		System.out.println("Invoked loging service");
+		System.out.println("invoked loging");
+	//	logger.info("Invoked loging service");
 		POCEntity entity=this.dao.getEmailByEntity(username, password);
 		if(entity != null && !entity.getUsername().isEmpty() && entity.getUsername() != null
 				&& !entity.getPassword().isEmpty()) {

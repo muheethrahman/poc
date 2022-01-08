@@ -1,7 +1,7 @@
 package com.xworkz.poc.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
+import org.apache.log4j.spi.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,8 +15,7 @@ import com.xworkz.poc.service.POCService;
 @Controller
 public class RegisterController {
 	
-	private  Logger logger = 
-			LoggerFactory.getLogger(RegisterController.class);
+	private static final Logger logger=Logger.getLogger(RegisterController.class);
 
 	@Autowired
 	private POCService service;
@@ -24,7 +23,7 @@ public class RegisterController {
 	public RegisterController() {
 		
 		logger.debug(getClass().getSimpleName()+"register Object controller created");
-		//System.out.println(getClass().getSimpleName()+"register Object controller created");
+		
 		
 	}
 	
@@ -37,10 +36,10 @@ public class RegisterController {
 	@RequestMapping(value="/register.do")
 	public String deatailsRegister(@ModelAttribute POCDto dto,Model model ) {
 		
-		logger.debug("invoked DetealisRegistered mehtod controller");
-		//System.out.println("invoked DetealisRegistered mehtod controller");
+		logger.info("invoked DetealisRegistered mehtod controller");
+	
 		
-		//System.out.println(dto);
+		
 		boolean outcome=this.service.registers(dto);
 		if(outcome) {
 			model.addAttribute("msg","registeration is successful");
