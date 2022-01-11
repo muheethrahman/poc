@@ -13,10 +13,11 @@ import javax.persistence.Table;
 import org.hibernate.annotations.NamedQueries;
 import org.hibernate.annotations.NamedQuery;
 
+
 @Entity
 @Table(name="details")
 @NamedQueries({
-	@NamedQuery(name = "GetRecord", query = "select name from POCEntity name where name.email=:em and name.password=:e ")})
+	@NamedQuery(name = "GetRecord", query = "from POCEntity name where name.username=:em")})
 public class POCEntity implements Serializable {
 
 	@Id
@@ -83,7 +84,7 @@ public class POCEntity implements Serializable {
 	}
 
 	public void setConfirm(String confirm) {
-		confirm = confirm;
+		this.confirm = confirm;
 	}
 
 	public String getCountry() {

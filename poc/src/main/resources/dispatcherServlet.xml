@@ -22,7 +22,7 @@
  	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
 		id="internalResourceViewResolver">
-		<constructor-arg name="prefix" value="/WEB-INF/" />
+		<constructor-arg name="prefix" value="/" />
 		<constructor-arg name="suffix" value=".jsp" />
 	</bean> 
 	
@@ -38,7 +38,7 @@
 		id="propertyPlaceholderConfigurer">
 		<property name="location" value="/WEB-INF/classes/database.properties"></property>
 	</bean>
-<!-- 	<bean class="org.springframework.mail.javamail.JavaMailSenderImpl"
+ 	<bean class="org.springframework.mail.javamail.JavaMailSenderImpl"
 		id="JavaMailSenderImpl">
 		<property name="username" value="muheethrahman@gmail.com"></property>
 		<property name="password" value="sonusonu03"></property>
@@ -53,5 +53,5 @@
 			</props>
 
 		</property>
-	</bean> -->
+	</bean> 
 </beans>
