@@ -7,6 +7,7 @@ import org.springframework.core.NestedRuntimeException;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import com.xworkz.poc.controller.OtpController;
 import com.xworkz.poc.dao.POCDao;
 import com.xworkz.poc.dto.POCDto;
 import com.xworkz.poc.entity.POCEntity;
@@ -70,7 +71,9 @@ public class POCServiceImpl implements POCService {
 		                                                             
 		                                                   
 	if(passwordCheck) {
+		
 			return true;
+			
 		} else {
 			logger.info(passwordCheck);
 			return false;

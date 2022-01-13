@@ -43,7 +43,7 @@ public class RegisterController {
 		boolean outcome=this.service.registers(dto);
 		if(outcome) {
 			model.addAttribute("msg","registeration is successful We Have sent you login link to your Register mail Check your mail and login");
-			return "success";
+			return "register";
 		}
 		
 		else {

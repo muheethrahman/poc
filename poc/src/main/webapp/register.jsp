@@ -140,12 +140,12 @@ $(document).ready(function(){
 </head>
 <body>
 	<h1>register the details</h1>
-	<h3>${msg}</h3>
+	
 	<div class="card bg-light">
 		<article class="card-body mx-auto" style="max-width: 400px;">
 			<h4 class="card-title mt-3 text-center">Create Account</h4>
 			<p class="text-center">Get started with your free account</p>
-			<p></p>
+			<p><h3>${msg}</h3></p>
 			<p class="divider-text"></p>
 			<form id="form" action="register.do">
 				<div class="form-group input-group">
